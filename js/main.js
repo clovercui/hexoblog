@@ -145,7 +145,7 @@ require([], function (){
     var id = Math.ceil(Math.random()*(colorList.length-1));
     // PC
     //$("#container .left-col .overlay").css({"background-color": colorList[id],"opacity": .3});
-    $("#container .left-col .overlay").css({"background": "url(img/logobg.jpg) no-repeat",  "background-size": "cover"});
+    $("#container .left-col .overlay").css({"background": "url(img/logobg.png) no-repeat",  "background-size": "cover"});
         
     // Mobile
     $("#container #mobile-nav .overlay").css({"background-color": colorList[id],"opacity": .7});
