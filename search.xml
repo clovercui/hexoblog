@@ -6,7 +6,7 @@
     <entry>
       <title><![CDATA[我的第一个博客]]></title>
       <url>http://clover.htmhub.com/hexoblog/2016/08/26/my-fist-blog/</url>
-      <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>这里是摘要</excerpt></p>
+      <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>这里是摘要<br><a id="more"></a></excerpt></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""><br>这里是全文</the></p>
 ]]></content>
     </entry>
@@ -14,7 +14,7 @@
     <entry>
       <title><![CDATA[Hello World]]></title>
       <url>http://clover.htmhub.com/hexoblog/2016/08/26/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
@@ -29,8 +29,8 @@
     <entry>
       <title><![CDATA[Linux文件加密之ccrypt]]></title>
       <url>http://clover.htmhub.com/hexoblog/2016/08/16/2106-08-16-linux-file-encode/</url>
-      <content type="html"><![CDATA[<p><code>ccrypt是为了取代UNIX crypt而设计的，这个实用工具可用于文件和数据流加密及解密。它使用Rijndael密码</code><a id="more"></a></p>
-<h1 id="ccrypt"><a href="#ccrypt" class="headerlink" title="ccrypt"></a>ccrypt</h1><p><code>ccrypt是为了取代UNIX crypt而设计的，这个实用工具可用于文件和数据流加密及解密。它使用Rijndael密码</code></p>
+      <content type="html"><![CDATA[<h1 id="ccrypt"><a href="#ccrypt" class="headerlink" title="ccrypt"></a>ccrypt</h1><p><code>ccrypt是为了取代UNIX crypt而设计的，这个实用工具可用于文件和数据流加密及解密。它使用Rijndael密码</code></p>
+<a id="more"></a>
 <hr>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install ccrypt</div><div class="line">$ yum install ccrypt</div></pre></td></tr></table></figure>
 <hr>
@@ -68,7 +68,7 @@
 QQ交流群：239243332
 </pre>
 
-<p><b>php-beast可以自定义加密模块，加密模块编写教程: <a href="https://github.com/liexusong/php-beast/wiki/%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%9D%97%E7%BC%96%E5%86%99%E6%95%99%E7%A8%8B" target="_blank" rel="external">点击</a></b></p>
+<p><b>php-beast可以自定义加密模块，加密模块编写教程: <a href="https://github.com/liexusong/php-beast/wiki/%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%9D%97%E7%BC%96%E5%86%99%E6%95%99%E7%A8%8B" target="_blank" rel="external">点击</a></b><br><a id="more"></a></p>
 <p></p><h3>编译安装如下:</h3><p></p>
 <pre><code>
 $ wget https://github.com/liexusong/php-beast/archive/master.zip
@@ -136,9 +136,11 @@ $ sudo make && make install
     <entry>
       <title><![CDATA[Redis Study 之二 入门指南]]></title>
       <url>http://clover.htmhub.com/hexoblog/2016/07/04/2016-07-04-redis-study-2/</url>
-      <content type="html"><![CDATA[<blockquote>
+      <content type="html"><![CDATA[<p>Redis通常被人们认为是一种持久化的存储器关键字-值型存储（in-memory persistent key-value store）。</p>
+<blockquote>
 <p>参考书籍：Redis入门指南（第二版）李子骅 编著 人民邮电出版社</p>
 </blockquote>
+<a id="more"></a>
 <h1 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h1><h2 id="1）启动Redis"><a href="#1）启动Redis" class="headerlink" title="1）启动Redis"></a>1）启动Redis</h2><ol>
 <li><p>直接启动</p>
 <pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># redis-server</span></div></pre></td></tr></table></figure>
@@ -582,8 +584,7 @@ gulp.task(<span class="string">'default'</span>, <span class="function"><span cl
       <content type="html"><![CDATA[<h1 id="Redis的学习"><a href="#Redis的学习" class="headerlink" title="Redis的学习"></a>Redis的学习</h1><hr>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
 <p>最近几年来，关于持久化和数据查询的相关技术，其需求已经增长到了让人惊讶的程度。可以断言，关系型数据库再也不是放之四海皆准。换一句话说，围绕数据的解决方案不可能再只有唯一一种。</p>
-<p>对于我来说，在众多新出现的解决方案和工具里，最让人兴奋的，无疑是Redis。为什么？首先是因为其让人不可思议的容易学习，只需要简短的几个小时学习时间，就能对Redis有个大概的认识。还有，Redis在处理一组特定的问题集的同时能保持相当的通用性。更准确地说就是，Redis不会尝试去解决关于数据的所有事情。在你足够了解Redis后，事情就会变得越来越清晰，什么是可行的，什么是不应该由Redis来处理的。作为一名开发人员，如此的经验当是相当的美妙。</p>
-<p>当你能仅使用Redis去构建一个完整系统时，我想大多数人将会发现，Redis能使得他们的许多数据方案变得更为通用，不论是一个传统的关系型数据库，一个面向文档的系统，或是其它更多的东西。这是一种用来实现某些特定特性的解决方法。就类似于一个索引引擎，你不会在Lucene上构建整个程序，但当你需要足够好的搜索，为什么不使用它呢？这对你和你的用户都有好处。当然，关于Redis和索引引擎之间相似性的讨论到此为止。</p>
+<p>对于我来说，在众多新出现的解决方案和工具里，最让人兴奋的，无疑是Redis。为什么？首先是因为其让人不可思议的容易学习，只需要简短的几个小时学习时间，就能对Redis有个大概的认识。还有，Redis在处理一组特定的问题集的同时能保持相当的通用性。更准确地说就是，Redis不会尝试去解决关于数据的所有事情。在你足够了解Redis后，事情就会变得越来越清晰，什么是可行的，什么是不应该由Redis来处理的。作为一名开发人员，如此的经验当是相当的美妙。<br><a id="more"></a><br>当你能仅使用Redis去构建一个完整系统时，我想大多数人将会发现，Redis能使得他们的许多数据方案变得更为通用，不论是一个传统的关系型数据库，一个面向文档的系统，或是其它更多的东西。这是一种用来实现某些特定特性的解决方法。就类似于一个索引引擎，你不会在Lucene上构建整个程序，但当你需要足够好的搜索，为什么不使用它呢？这对你和你的用户都有好处。当然，关于Redis和索引引擎之间相似性的讨论到此为止。</p>
 <p>本书的目的是向读者传授掌握Redis所需要的基本知识。我们将会注重于学习Redis的5种数据结构，并研究各种数据建模方法。我们还会接触到一些主要的管理细节和调试技巧。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><hr>
 <p><code>windows</code>:<a href="https://github.com/dmajkic/redis/downloads" target="_blank" rel="external">https://github.com/dmajkic/redis/downloads</a></p>
@@ -947,6 +948,7 @@ rename-command FLUSHALL 1041285018a942a4922cbf76623b741e
 <li>数据备份与恢复</li>
 <li>数据迁移</li>
 </ul>
+<a id="more"></a>
 <h4 id="简单运维"><a href="#简单运维" class="headerlink" title="简单运维"></a>简单运维</h4><ul>
 <li>部署集群</li>
 <li><p>处理多种常见的故障</p>
