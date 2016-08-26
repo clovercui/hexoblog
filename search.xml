@@ -29,7 +29,13 @@
     <entry>
       <title><![CDATA[Linux文件加密之ccrypt]]></title>
       <url>http://clover.htmhub.com/hexoblog/2016/08/16/2106-08-16-linux-file-encode/</url>
-      <content type="html"><![CDATA[<h1 id="ccrypt"><a href="#ccrypt" class="headerlink" title="ccrypt"></a>ccrypt</h1><p><code>ccrypt是为了取代UNIX crypt而设计的，这个实用工具可用于文件和数据流加密及解密。它使用Rijndael密码</code></p>
+      <content type="html"><![CDATA[<excerpt in="" index="" |="" 首页摘要=""> 
+
+<p><code>ccrypt是为了取代UNIX crypt而设计的，这个实用工具可用于文件和数据流加密及解密。它使用Rijndael密码</code></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+
+<h1 id="ccrypt"><a href="#ccrypt" class="headerlink" title="ccrypt"></a>ccrypt</h1><p><code>ccrypt是为了取代UNIX crypt而设计的，这个实用工具可用于文件和数据流加密及解密。它使用Rijndael密码</code></p>
 <hr>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install ccrypt</div><div class="line">$ yum install ccrypt</div></pre></td></tr></table></figure>
 <hr>
@@ -44,7 +50,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ccdecrypt filename</div></pre></td></tr></table></figure>
 <p>提供加密时输入的同一个密码才能解密</p>
 <p>它使用ccencrypt来加密、使用ccdecrypt来解密。一定要注意，加密时，原始文件(tecmint.txt)换成了tecmint.txt.cpt;解密时，加密文件(tecmint.txt.cpt)换成了原始文件(tecmint.txt)。你可以使用ls命令来予以核查</p>
-]]></content>
+</the></excerpt>]]></content>
     </entry>
     
     <entry>
