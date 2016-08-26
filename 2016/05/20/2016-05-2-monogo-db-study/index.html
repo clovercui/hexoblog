@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Clover Cui" />
+
+
+
+<meta name="description" content="MonogoDB  学习笔记
+#入门篇
+
+学习目标
+Mongo 概念
+mongo MongoDB 索引 集合 复制集 分片 数据均衡
+
+学会MongoDB的搭建
+搭建简单的单击服务
+搭建具有冗余容错功能的复制集
+搭建大规模数据集群
+完成集群的自动部署
+
+MongoDB的使用
+最基本的文档的读写和更新
+各种不同类型的索引的创建与使用
+复杂的聚合查询
+对数据集合进行分片，在不同分片间维持数据均衡
+数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monogo DB Study">
+<meta property="og:url" content="http://clover.htmhub.com/2016/05/20/2016-05-2-monogo-db-study/index.html">
+<meta property="og:site_name" content="Clover`S Blog">
+<meta property="og:description" content="MonogoDB  学习笔记
+#入门篇
+
+学习目标
+Mongo 概念
+mongo MongoDB 索引 集合 复制集 分片 数据均衡
+
+学会MongoDB的搭建
+搭建简单的单击服务
+搭建具有冗余容错功能的复制集
+搭建大规模数据集群
+完成集群的自动部署
+
+MongoDB的使用
+最基本的文档的读写和更新
+各种不同类型的索引的创建与使用
+复杂的聚合查询
+对数据集合进行分片，在不同分片间维持数据均衡
+数据">
+<meta property="og:updated_time" content="2016-08-26T08:16:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Monogo DB Study">
+<meta name="twitter:description" content="MonogoDB  学习笔记
+#入门篇
+
+学习目标
+Mongo 概念
+mongo MongoDB 索引 集合 复制集 分片 数据均衡
+
+学会MongoDB的搭建
+搭建简单的单击服务
+搭建具有冗余容错功能的复制集
+搭建大规模数据集群
+完成集群的自动部署
+
+MongoDB的使用
+最基本的文档的读写和更新
+各种不同类型的索引的创建与使用
+复杂的聚合查询
+对数据集合进行分片，在不同分片间维持数据均衡
+数据">
+
+<link rel="apple-touch-icon" href= "/hexoblog//apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Clover`S Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/hexoblog//favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/hexoblog/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Monogo DB Study | Clover`S Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = /hexoblog/; </script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/hexoblog/" class="profilepic">
+            <img src="/hexoblog//img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/hexoblog/">Clover Cui</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">克洛弗的博客</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/hexoblog/">主页</a></li>
+                        
+                            <li><a href="/hexoblog/archives/">所有文章</a></li>
+                        
+                            <li><a href="/hexoblog/tags/">标签云</a></li>
+                        
+                            <li><a href="/hexoblog/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:clover_cui@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/clovercui" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/hexoblog/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/Clover/">Clover</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/Gulp/">Gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/MonogoDB/">MonogoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/Web/">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/中文/">中文</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://clover.htmhub.com/">Clover</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Clover Cui</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/hexoblog/" class="profilepic">
+                <img src="/hexoblog//img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/hexoblog/" title="回到主页">Clover Cui</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">克洛弗的博客</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/hexoblog/">主页</a></li>
+                
+                    <li><a href="/hexoblog/archives/">所有文章</a></li>
+                
+                    <li><a href="/hexoblog/tags/">标签云</a></li>
+                
+                    <li><a href="/hexoblog/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:clover_cui@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/clovercui" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/hexoblog/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-05-2-monogo-db-study" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/hexoblog/2016/05/20/2016-05-2-monogo-db-study/" class="article-date">
+      <time datetime="2016-05-20T05:00:00.000Z" itemprop="datePublished">2016-05-20</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Monogo DB Study
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/hexoblog/categories/数据库/">数据库</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Clover/">Clover</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/MonogoDB/">MonogoDB</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="MonogoDB-学习笔记"><a href="#MonogoDB-学习笔记" class="headerlink" title="MonogoDB  学习笔记"></a>MonogoDB  学习笔记</h1><hr>
+<p>#入门篇</p>
+<hr>
+<h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><hr>
+<h4 id="Mongo-概念"><a href="#Mongo-概念" class="headerlink" title="Mongo 概念"></a>Mongo 概念</h4><ul>
+<li><code>mongo</code> <code>MongoDB</code> <code>索引</code> <code>集合</code> <code>复制集</code> <code>分片</code> <code>数据均衡</code></li>
+</ul>
+<h4 id="学会MongoDB的搭建"><a href="#学会MongoDB的搭建" class="headerlink" title="学会MongoDB的搭建"></a>学会MongoDB的搭建</h4><ul>
+<li>搭建简单的单击服务</li>
+<li>搭建具有冗余容错功能的复制集</li>
+<li>搭建大规模数据集群</li>
+<li>完成集群的自动部署</li>
+</ul>
+<h4 id="MongoDB的使用"><a href="#MongoDB的使用" class="headerlink" title="MongoDB的使用"></a>MongoDB的使用</h4><ul>
+<li>最基本的文档的读写和更新</li>
+<li>各种不同类型的索引的创建与使用</li>
+<li>复杂的聚合查询</li>
+<li>对数据集合进行分片，在不同分片间维持数据均衡</li>
+<li>数据备份与恢复</li>
+<li>数据迁移</li>
+</ul>
+<h4 id="简单运维"><a href="#简单运维" class="headerlink" title="简单运维"></a>简单运维</h4><ul>
+<li>部署集群</li>
+<li><p>处理多种常见的故障</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"> 单节点失效，如何恢复工作</div><div class="line"> 数据库意外被杀死如何进行数据恢复</div><div class="line"> 数据库拒绝服务如何排除原因</div><div class="line"> 数据库磁盘快慢时如何处理</div><div class="line"> </div><div class="line"> ``` </div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">## 学习资源</div><div class="line">---</div><div class="line">* **MongoDB官网** `www.mongodb.org`</div><div class="line">* **MongoDB中国官网** `www.mongoing.com`</div><div class="line">* **github** `https://github.com/mongodb/mongo`</div><div class="line">* **中文文档** `docs.mongoing.com`</div><div class="line">* **视频资源** `http://www.imooc.com/video/5934`</div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">#开始学习</div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">## 数据库</div><div class="line"></div><div class="line">---</div><div class="line">### 概念</div><div class="line">1. 有组织的存放数据</div><div class="line">2. 按照不同的需求进行查询</div><div class="line"></div><div class="line">### 数据库分类</div><div class="line">1. sql数据库：支持sql语言的数据库 Oracle,Mysql</div><div class="line">2. NoSql数据库：不支持SQL语言的数据库 Redis,MongoDB</div><div class="line"></div><div class="line">Sql 数据库 | NoSql数据库 </div><div class="line">----------|------------- </div><div class="line">实时一致性   	  | 简单便捷 </div><div class="line">事务          |方便扩展</div><div class="line">多表联合查询   | 更好的性能</div><div class="line"></div><div class="line">### 为什么是MongoDB</div><div class="line">1. 无数据结构的限制</div><div class="line">	1. 没有表结构的概念，每条记录可以有完全不同的结构</div><div class="line">	2. 业务开发方便快捷</div><div class="line">	3. sql数据库需要先定义表结构再使用</div></pre></td></tr></table></figure>
+<p>  {name:”小明”,sex:”男”}<br>  {name:”小明”,address:”上海”}<br>  {name:”小明”,home:[{“山东”},{“江西”}]}</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">2. 完全的索引支持</div><div class="line">	1. redis的key-value</div><div class="line">	2. hbase的单索引	，二级索引需要自己实现</div></pre></td></tr></table></figure>
+<p>  单键索引，多键索引：{x:1,y:1}<br>  数组索引：[“apple”,”lemon”]<br>  全文索引：“I am a little bird” (中文)<br>  地理位置索引：2D</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">3. 方便的冗余和扩展</div><div class="line">	1. 复制集保证数据安全</div><div class="line">	2. 分片扩展数据规模</div><div class="line"></div><div class="line">4. 良好的支持</div><div class="line">	1. 完善的文档</div><div class="line">	2. 齐全的驱动支持</div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">&gt;安装过程 略过</div><div class="line"></div><div class="line">---</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="mkdir-data"><a href="#mkdir-data" class="headerlink" title="mkdir data"></a>mkdir data</h1><h1 id="mkdir-log"><a href="#mkdir-log" class="headerlink" title="mkdir log"></a>mkdir log</h1><h1 id="mkdir-conf"><a href="#mkdir-conf" class="headerlink" title="mkdir conf"></a>mkdir conf</h1><h1 id="mkdir-bin"><a href="#mkdir-bin" class="headerlink" title="mkdir bin"></a>mkdir bin</h1><h1 id="cd-conf"><a href="#cd-conf" class="headerlink" title="cd conf"></a>cd conf</h1><h1 id="vim-mongodb-conf"><a href="#vim-mongodb-conf" class="headerlink" title="vim mongodb.conf"></a>vim mongodb.conf</h1><p>  port=27017<br>  dbpath=data<br>  logpath=log/mongod.log<br>  fork=true<br>启动 # mongod -f conf/mongodb.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">连接 mongo 121.41.31.214:27017</div><div class="line">数据库的关闭 连接时   db.shutdownServer()</div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">## mongoDB的基本操作</div><div class="line"></div><div class="line">---</div></pre></td></tr></table></figure></p>
+<p>查看所有数据库</p>
+<blockquote>
+<p>show dbs</p>
+</blockquote>
+<p>切换数据库</p>
+<blockquote>
+<p>use dbname</p>
+</blockquote>
+<p>删除当前数据库,（需要先use）</p>
+<blockquote>
+<p>db.dropDatabase();</p>
+</blockquote>
+<p>创建表 (不要特殊创建 只需要use 一个不存在的name mongoDb会在需要的时候自己创建，一个表是一个集合)</p>
+<blockquote>
+<p>use dbname</p>
+</blockquote>
+<p>数据的写入  db.集合名.insert(json数据) 表集合不存在的话自动创建 _id自动创建 _id自定义时不能重复</p>
+<blockquote>
+<p>db.dbname_collection.insert({x:1})</p>
+</blockquote>
+<p>数据的查询 db.集合名.find()  参数可以为空，返回所有文档</p>
+<blockquote>
+<p>db.dbname_collection.find()<br>db.dbname_collection.find({x:1})   查询x=1的文档</p>
+</blockquote>
+<p>循环插入</p>
+<blockquote>
+<p>for(i=3;i&lt;100;i++)db.dbname_collection.insert({x:i})</p>
+</blockquote>
+<p>计数</p>
+<blockquote>
+<p>db.dbname_collection.find().count()</p>
+</blockquote>
+<p>跳过，限制条数，排序</p>
+<blockquote>
+<p>db.dbname_collection.find().skip(3).limit(2).sort({x:1})</p>
+</blockquote>
+<p>数据更新 db.集合名.find(查询条件,更新条目)  默认只会更新第一条找到的数据</p>
+<blockquote>
+<p>db.dbname_collection.update({x:1},{x:999})  会更新x=1的文档为 {x:999}<br>注意：db.dbname_collection.insert({x:1,y:2,z:3}) 若要更新z=3的文档 把x更新为22， 使用 db.dbname_collection.update({z:3},{x:22})  会把{x:1,y:2,z:3}整体覆盖为{x:22} </p>
+</blockquote>
+<p>局部更新</p>
+<blockquote>
+<p>db.dbname_collection.update({z:3},{$set:{x:22}})  局部更新 不会被覆盖</p>
+</blockquote>
+<p>更新不存在的数据，即自动创建 第三个参数 true 标示不存在的时候自动创建</p>
+<blockquote>
+<p>db.dbname_collection.update({x:3},{x:22},true)</p>
+</blockquote>
+<p>批量更新  第四个参数 true 批量更新</p>
+<blockquote>
+<p>db.dbname_collection.update({x:1},{$set:{x:22}},false,true)</p>
+</blockquote>
+<p>数据删除  必须传参，默认删除所有找的数据</p>
+<blockquote>
+<p>db.dbname_collection.remove({x:1})<br>db.dbname_collection.drop()</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">## MongoDB索引</div><div class="line"> </div><div class="line">---</div><div class="line"></div><div class="line">#### 内容简介</div><div class="line"></div><div class="line">1. 索引的种类和使用</div><div class="line">2. 索引的匹配规则</div><div class="line">3. 如何建立合适的索引</div><div class="line">4. 索引建立的情况评估</div></pre></td></tr></table></figure>
+<p>查看索引</p>
+<blockquote>
+<p>db.dbname_collection.getIndexes()</p>
+</blockquote>
+<p>创建索引  参数也是文档  1代表正向排序 -1 代表逆向排序</p>
+<blockquote>
+<p>db.dbname_collection.ensureIndex({x:1})</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 索引的种类</div><div class="line"></div><div class="line">1. _id索引</div><div class="line">2.  单键索引</div><div class="line">3.  多键索引</div><div class="line">4.  复合索引</div><div class="line">5.  过期索引</div><div class="line">6.  全文索引</div><div class="line">7.  地理位置索引</div><div class="line"></div><div class="line">##### _id索引</div><div class="line">* _id索引是绝大多数集合默认建立的索引</div><div class="line">* 对于每个插入的数据，MongoDB都会自动生成一条唯一的_id字段</div><div class="line"></div><div class="line">##### 单键索引</div><div class="line">* 单键索引是最普通的索引</div><div class="line">* 与_id索引不同，单键索引不会自动创建</div><div class="line"></div><div class="line">##### 多键索引</div><div class="line">* 多键索引与单键索引创建形式相同，区别在于字段的值</div><div class="line">   * 单键索引：值为单一的值，例如字符串，数字或者日期</div><div class="line">   * 多键索引：值具有多个记录，例如数组</div><div class="line">##### 复合索引</div><div class="line">* 当我们的查询条件不只有一个时，就需要建立复合索引</div><div class="line">  * 插入&#123;x:1,y:2,z:3&#125;-&gt;按照x与y的值查询-&gt;创建索引db.collection.ensureIndex(&#123;x:1,y:1&#125;)-&gt;使用&#123;x:1,y:1&#125;作为条件进行查询  </div><div class="line"></div><div class="line">##### 过期索引</div><div class="line">* 过期索引：是在一段时间后会过期的索引</div><div class="line">* 在索引过期后，相应的数据会被删除</div><div class="line">* 这适合存储一些在一些时间后会失效的数据 比如用户的登陆信息，存储的日志  </div><div class="line">* 建立方法：db.collection.ensureIndex(&#123;time:1&#125;,&#123;expireAfterSeconds:10&#125;),第二个参数是过期时间的秒数</div><div class="line">* 过期索引的限制</div><div class="line">	1. 存储在过期索引字段的值必须是指定的时间类型，说明：必须是ISODate或者ISODate数组，不能使用时间戳，否则不能被自动删除</div><div class="line">	2. 如果指定了ISODate数组，则按照最小的时间进行删除</div><div class="line">	3. 过期索引不能是复合索引</div><div class="line">	4. 删除时间是不精确的 说明：删除过程是由后台程序每60S跑一次，而且删除也需要一些时间，所以存在误差</div><div class="line"></div><div class="line">##### 全文索引 </div><div class="line">*  全文索引：对字符串与字符串数组创建全文可搜索的索引</div><div class="line">适用情况&#123;author:&quot;&quot;,title:&quot;&quot;,article:&quot;&quot;&#125;</div><div class="line">* 建立方法</div><div class="line">	db.articles.ensureIndex(&#123;key:&quot;text&quot;&#125;)</div><div class="line">	db.articles.ensureIndex(&#123;key_1:&quot;text&quot;,key_2:&quot;text&quot;&#125;)</div><div class="line">	db.articles.ensureIndex(&#123;&quot;$**&quot;:&quot;text&quot;&#125;)</div><div class="line">* 如何创建全文索引	</div><div class="line">	db.imooc_2.ensureIndex(&#123;&quot;article&quot;:&quot;text&quot;&#125;)</div><div class="line">* 如何使用全文索引进行查询</div><div class="line">	1.	db.articles.find(&#123;$text:&#123;$search:&quot;coffee&quot;&#125;&#125;)</div><div class="line">	2.	db.articles.find(&#123;$text:&#123;$search:&quot;aa bb cc&quot;&#125;&#125;) 查询 aa 或bb 或cc</div><div class="line">	3.	db.articles.find(&#123;$text:&#123;$search:&quot;aa bb -cc&quot;&#125;&#125;) 查询aa 或bb 不包含cc</div><div class="line">	4.	db.articles.find(&#123;$text:&#123;$search:&quot;\&quot;aa\&quot; \&quot;bb\&quot; \&quot;cc\&quot;&quot;&#125;&#125;) 且的关系 既包含aa也包含bb也包含cc</div><div class="line">* 全文索引的相似度</div><div class="line"> </div><div class="line">  $meta操作符：&#123;score:&#123;$meta:&quot;textScore&quot;&#125;&#125;</div><div class="line">  写在查询条件后面可以返回结果的相似度与sort一起使用，可以达到很好的实用效果	db.articles.find(&#123;$text:&#123;$search:&quot;aa bb&quot;&#125;&#125;,&#123;score:&#123;$meta:&quot;tetxScore&quot;&#125;&#125;).sort(&#123;score:&#123;$meta:&quot;tetxScore&quot;&#125;&#125;)</div><div class="line">* 全文索引的使用限制</div><div class="line">  1.每次查询，只能指定一个$text查询</div><div class="line">  2. $test查询不能出现在$nor查询中	</div><div class="line">  3. 查询中如果包含了$test,hint不再起作用</div><div class="line">  很可惜，MongoDB全文索引还不支持中文</div><div class="line"></div><div class="line">#### 索引属性</div><div class="line">1. 创建索引的格式</div><div class="line">	db,collection.ensureIndex(&#123;param&#125;,&#123;param&#125;) </div><div class="line">	其中第二个参数便是索引的属性</div><div class="line">2. 比较重要的属性有 名字 唯一性 稀疏性 是否定时删除</div><div class="line">	* 名字，name指定：db.collection.ensureIndex(&#123;&#125;,&#123;name:&quot;&quot;&#125;)</div><div class="line">	* 唯一性，unique指定：db.collection.ensureIndex(&#123;&#125;,&#123;unique:true/false&#125;)</div><div class="line">	* 稀疏性，sparse指定：db.collection.ensureIndex(&#123;&#125;,&#123;sparse:true/false&#125;) 默认是不稀疏的</div><div class="line">	db.collection.find(&#123;m:&#123;$exists:true&#125;&#125;)查询存在m的文档</div><div class="line">	db.collection.ensureIndex(&#123;m:1&#125;,&#123;sparse:true&#125;)</div><div class="line">	</div><div class="line">	db.collection.find(&#123;m:&#123;$exists:false&#125;&#125;)</div><div class="line">	**在选取索引  在稀疏索引上 查找是否存在 将不使用稀疏索引**</div><div class="line">	强制使用索引 db.collection.find(&#123;m:&#123;$exists:false&#125;&#125;).hint(&quot;m_1&quot;)</div><div class="line">	</div><div class="line">	* 是否定时删除，expireAfterSeconds指定</div><div class="line">	TTL，过期索引</div><div class="line">	 </div><div class="line">##### 地理位置索引 </div><div class="line">* 将一些点的位置存储在MongoDB中，创建索引后，可以按照位置来查找其他点</div><div class="line">  * 子分类:</div><div class="line">  1. 2d索引，用于存储和查找平面上的点。</div><div class="line">  2. 2dsphere索引，用于存储和查找球面上的点</div><div class="line">* 查找方式</div><div class="line">  * 查找距离某个点一定距离的点  </div><div class="line">  * 查找包含在某区域内的点</div></pre></td></tr></table></figure>
+<p>2D索引：平面地理位置索引<br>        创建方式:db.collection.ensureIndex({w:”2d”})<br>        位置表示方式：经纬度[经度,维度]<br>        取值范围：经度[-180,180]维度[-90,90]<br>        db.collection.insert({w:[100,2]})<br>        db.collection.find({w:{$near:[1,1]}})<br>        near会返回100个离查询的点最近的点<br>        db.collection.find({w:{$near:[1,1]，$maxDistance:10}})  </p>
+<pre><code>    查询方式：
+    （1）$near查询：查询距离某个点最近的点
+    （2）$geoWithin查询：查询某个形状内的点
+
+    形状的标示：
+    1.$box:矩形，使用
+    {$box[[&lt;x1&gt;,&lt;y1&gt;],[&lt;x2&gt;,&lt;y2&gt;]]}  1.左边界 2.右边界
+    2.$center:圆形，使用
+    {$center:[[&lt;x1&gt;,&lt;y1&gt;],r]} 1.圆心位置 2.半径
+    3.$polygon:多边形，使用
+    {$polygon：[[&lt;x1&gt;,&lt;y1&gt;],[&lt;x2&gt;,&lt;y2&gt;],[&lt;x3&gt;,&lt;y3&gt;]]}
+
+    db.collection.find({w:{$geoWithin:{$box:[[0,0],[3,3]]}}})
+
+geoNear查询
+geoNear使用runCommand命令进行使用
+{
+geoNear:&lt;collection&gt;,
+near:[x,y],
+minDistance:(对2D索引无效)
+MaxDistance:
+num:
+}
+
+db.runCommand({geoNear:&quot;location&quot;,near:[1,2],maxDistance:10,num:1})
+</code></pre><p>2dsphere:<br>创建方式:db.collection.ensureIndex({w:”2dsphere”})<br>位置表示方式<br>GeoJson:描述一个点，一条直线，多边形等<br>格式：{type:””,coordinates:[<coordinates>]}<br>查询方式和2D索引查询方式类似<br>支持$minDistance与$maxDistance</coordinates></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">## 索引构建情况分析</div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">* 索引好处：加快索引相关的查询</div><div class="line">* 索引不好处：增加磁盘空间消耗，降低写入性能</div><div class="line"></div><div class="line">---</div><div class="line">* 如何评判当前索引构建情况</div><div class="line">	1. mongostat工具介绍</div><div class="line">	2. profile集合介绍</div><div class="line">	3. 日志介绍</div><div class="line">	4. explain分析</div><div class="line"></div><div class="line">##### mongostat工具</div><div class="line"> * mongostat查看mongodb运行状态的程序</div><div class="line"> * 使用说明	:mongostat -h 127.0.0.1:12345</div><div class="line"> </div><div class="line"> * 字段说明:</div><div class="line"> 	* inserts</div><div class="line"> 	* query</div><div class="line"> 	* update</div><div class="line"> 	* delete</div><div class="line"> 	* getmore</div><div class="line"> 	* command</div><div class="line"> 	* flushes</div><div class="line"> 	* mapped</div><div class="line"> 	* vsize</div><div class="line"> 	* res</div><div class="line"> 	* non-mapped</div><div class="line"> 	* faults</div><div class="line"> 	* locked</div><div class="line"> 	* idx miss 索引情况</div><div class="line"> 	* qr|qw</div><div class="line"> 	* ar|aw</div><div class="line"> 	* netIn</div><div class="line"> 	* netOut</div><div class="line"> 	* conn</div><div class="line"> 	* set</div><div class="line"> 	* repl</div><div class="line"> 	</div><div class="line">##### profile集合</div><div class="line"> * db.getProfilingStatus()</div><div class="line"> * db.setProfilingLevel(2)</div><div class="line"></div><div class="line"> * db.system.profile.find().sort(&#123;$natural:-1&#125;).limit(1)  </div><div class="line"> </div><div class="line">##### 日志</div><div class="line"> * mongodb.conf 中 verbose=vvvvv    v越多代表日志越详细</div><div class="line">  </div><div class="line">##### explain</div><div class="line">* db.collection.find(&#123;x:1&#125;).explain()</div><div class="line"></div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">## MongoDB 安全</div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">###安全概览</div><div class="line">1. 最安全的是物理隔离：不现实</div><div class="line">2. 网络隔离其次</div><div class="line">3. 防火墙再其次</div><div class="line">4. 用户名密码在最后</div><div class="line"></div><div class="line">---</div><div class="line"></div><div class="line">#### 开启权限验证</div><div class="line">1. auth开启</div><div class="line">mongodb.conf 设置  auth=true;</div><div class="line"></div><div class="line">2. keyfile开启</div><div class="line"></div><div class="line">##### MongoDB创建用户</div><div class="line">1. 创建语法：createUser(2.6之前为addUser)</div><div class="line">2.</div></pre></td></tr></table></figure>
+<p>{<br>user:”<name>“,<br>pwd:”<password>“,<br>sustomData:{&lt;说明&gt;},<br>roles;[{role:”<role>“,db:”database”}]<br>}<br>```</role></password></name></p>
+<ol>
+<li>角色类型：内建类型（read,readWrite,dbAdmin,dbOwner,userAdmin）</li>
+</ol>
+<h5 id="用户角色详解"><a href="#用户角色详解" class="headerlink" title="用户角色详解"></a>用户角色详解</h5><ol>
+<li>数据库角色（read,readWrite,dbAdmin,dbOwner,userAdmin）</li>
+<li>集群角色（cluterAdmin,clusterManager）</li>
+<li>备份角色（backup,restore）</li>
+<li>其他特殊权限（DBAdminAnyDatabase） </li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/hexoblog/2016/05/20/2016-05-2-monogo-db-study/">Monogo DB Study</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Clover Cui</a></p>
+        <p><span>发布时间:</span>2016-05-20, 13:00:00</p>
+        <p><span>最后更新:</span>2016-08-26, 16:16:41</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/hexoblog/2016/05/20/2016-05-2-monogo-db-study/" title="Monogo DB Study">http://clover.htmhub.com/hexoblog/2016/05/20/2016-05-2-monogo-db-study/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://clover.htmhub.com/hexoblog/2016/05/20/2016-05-2-monogo-db-study/　　作者: Clover Cui" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/hexoblog/2016/06/20/2016-06-20-redis-study/">
+                    Redis Study
+                </a>
+            </div>
+        
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MonogoDB-学习笔记"><span class="toc-number">1.</span> <span class="toc-text">MonogoDB  学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#学习目标"><span class="toc-number">1.1.</span> <span class="toc-text">学习目标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mongo-概念"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">Mongo 概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#学会MongoDB的搭建"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">学会MongoDB的搭建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MongoDB的使用"><span class="toc-number">1.1.0.3.</span> <span class="toc-text">MongoDB的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#简单运维"><span class="toc-number">1.1.0.4.</span> <span class="toc-text">简单运维</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mkdir-data"><span class="toc-number">2.</span> <span class="toc-text">mkdir data</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mkdir-log"><span class="toc-number">3.</span> <span class="toc-text">mkdir log</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mkdir-conf"><span class="toc-number">4.</span> <span class="toc-text">mkdir conf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mkdir-bin"><span class="toc-number">5.</span> <span class="toc-text">mkdir bin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cd-conf"><span class="toc-number">6.</span> <span class="toc-text">cd conf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vim-mongodb-conf"><span class="toc-number">7.</span> <span class="toc-text">vim mongodb.conf</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#用户角色详解"><span class="toc-number">7.0.0.0.1.</span> <span class="toc-text">用户角色详解</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Monogo DB Study　| Clover`S Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/05/20/2016-05-2-monogo-db-study/" data-title="Monogo DB Study" data-url="http://clover.htmhub.com/hexoblog/2016/05/20/2016-05-2-monogo-db-study/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"clovercui"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/hexoblog/2016/06/20/2016-06-20-redis-study/" title="上一篇: Redis Study">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/hexoblog/2016/08/26/my-fist-blog/">我的第一个博客</a></li><li class="post-list-item"><a class="post-list-link" href="/hexoblog/2016/08/26/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/hexoblog/2016/08/16/2106-08-16-linux-file-encode/">Linux文件加密之ccrypt</a></li><li class="post-list-item"><a class="post-list-link" href="/hexoblog/2016/08/16/2106-08-16-php-codes-encode/">PHP源码加密模块 php-beast</a></li><li class="post-list-item"><a class="post-list-link" href="/hexoblog/2016/07/04/2016-07-04-redis-study-2/">Redis Study 之二 入门指南</a></li><li class="post-list-item"><a class="post-list-link" href="/hexoblog/2016/06/30/2016-06-30-gulp-study/">Gulp-前端自动化构建工具</a></li><li class="post-list-item"><a class="post-list-link" href="/hexoblog/2016/06/20/2016-06-20-redis-study/">Redis Study</a></li><li class="post-list-item"><a class="post-list-link" href="/hexoblog/2016/05/20/2016-05-2-monogo-db-study/">Monogo DB Study</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Clover Cui
+            </div>
+            <div class="footer-right">
+               <!-- <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>-->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/hexoblog/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/hexoblog//background/bg-x.jpg)".replace(/bg-x/gi, 'bg-'+Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+                //$("body").css({"background": "url(/hexoblog//background/bg-5.jpg)", "background-attachment": "fixed", "background-size": "cover"});
+                
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
