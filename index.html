@@ -1,1157 +1,398 @@
-<!DOCTYPE html>
-<html lang="zh-Hans">
+<!DOCTYPE HTML>
+<html>
+
 <head>
-
-    <!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="Clover Cui" />
-
-
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	 <link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			
+    <title>
+    Clover`S Blog
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/hexoblog/css/mic_main.css" />
+    <link rel="stylesheet" href="/hexoblog/css/dropdownMenu.css" />
     
-    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/hexoblog/css/noscript.css" />
+    </noscript>
 
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Clover`S Blog">
-<meta property="og:url" content="http://clover.htmhub.com/index.html">
-<meta property="og:site_name" content="Clover`S Blog">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Clover`S Blog">
-
-<link rel="apple-touch-icon" href= "/hexoblog//apple-touch-icon.png">
-
-
-    <link rel="alternate" href="/atom.xml" title="Clover`S Blog" type="application/atom+xml">
-
-
-
-    <link rel="shortcut icon" href="/hexoblog//favicon.png">
-
-
-
-    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
-
-
-
-    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-
-
-
-    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-<link rel="stylesheet" href="/hexoblog/css/style.css">
-
-
-    <style> .article { opacity: 0;} </style>
-
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-<title>Clover`S Blog</title>
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
-        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: true
-    }
-</script>
-
-
-    <script>
-        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
-    </script>
-
-
-
-    <script> yiliaConfig.rootUrl = /hexoblog/; </script>
-
-
-
-
-
-
+			    <script src="/hexoblog/js/jquery.min.js"></script>
+    <script src="/hexoblog/js/jquery.scrollex.min.js"></script>
+    <script src="/hexoblog/js/jquery.scrolly.min.js"></script>
+    <script src="/hexoblog/js/skel.min.js"></script>
+    <script src="/hexoblog/js/util.js"></script>
+    <script src="/hexoblog/js/main.js"></script>
+	
 </head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/hexoblog/" class="profilepic">
-            <img src="/hexoblog//img/avatar.jpg" class="animated zoomIn">
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/hexoblog/">Clover Cui</a></h1>
-        </hgroup>
-
-        
-        <p class="header-subtitle">克洛弗的博客</p>
-        
-
-        
-            <form id="search-form">
-            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
-            <i class="fa fa-times" onclick="resetSearch()"></i>
-            </form>
-            <div id="local-search-result"></div>
-            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
-        
-
-
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
-
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/hexoblog/">主页</a></li>
-                        
-                            <li><a href="/hexoblog/archives/">所有文章</a></li>
-                        
-                            <li><a href="/hexoblog/tags/">标签云</a></li>
-                        
-                            <li><a href="/hexoblog/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" href="mailto:clover_cui@163.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" href="https://github.com/clovercui" title="GitHub"></a>
-                            
-                                <a class="fa RSS" href="/hexoblog/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/Clover/">Clover</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/Gulp/">Gulp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/MonogoDB/">MonogoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/TEST/">TEST</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/Web/">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoblog/tags/中文/">中文</a></li></ul>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://clover.htmhub.com/">Clover</a>
-                    
-                    </div>
-                </section>
-                
-
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">专注于前端</div>
-                </section>
-                
-            </div>
+    
+		<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in overlay">
+        <!-- Intro 头部显示 s -->
+                <div id="intro">
+            <h1>This is<br />
+                        MICCALL </h1>
+            <p> Whatever is worth doing is worth doing well <br/> I'll think of you every step of the way
+            </p>
+            <ul class="actions">
+                <li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
+            </ul>
         </div>
-    </header>                
-</div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Clover Cui</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/hexoblog/" class="profilepic">
-                <img src="/hexoblog//img/avatar.jpg" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/hexoblog/" title="回到主页">Clover Cui</a></h1>
-            </hgroup>
-            
-            <p class="header-subtitle">克洛弗的博客</p>
-            
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/hexoblog/">主页</a></li>
-                
-                    <li><a href="/hexoblog/archives/">所有文章</a></li>
-                
-                    <li><a href="/hexoblog/tags/">标签云</a></li>
-                
-                    <li><a href="/hexoblog/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" target="_blank" href="mailto:clover_cui@163.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="https://github.com/clovercui" title="GitHub"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/hexoblog/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-            </nav>
-        </header>                
-    </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/hexoblog/" class="logo">MICCALL</a>
+</header>
+        <!-- Header 头部logo end -->
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/hexoblog/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/hexoblog/categories/开发工具/">开发工具</a></li><li><a class="category-link" href="/hexoblog/categories/技术碎片/">技术碎片</a></li><li><a class="category-link" href="/hexoblog/categories/数据库/">数据库</a></li><li><a class="category-link" href="/hexoblog/categories/示例/">示例</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/hexoblog/2016/11/29/test/" class="article-date">
-      <time datetime="2016-11-29T07:44:49.000Z" itemprop="datePublished">2016-11-29</time>
-</a>
-
- 
-    <a href="/hexoblog/2016/11/29/test/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
+        <!-- Nav 导航条 end -->
+        <!-- Main 主要部分 start -->
         
-            <span class="ds-thread-count"  data-thread-key="2016/11/29/test/" ></span>
-        
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoblog/2016/11/29/test/">test</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="这是一个一级标题"><a href="#这是一个一级标题" class="headerlink" title="这是一个一级标题"></a>这是一个一级标题</h1><ul>
-<li>1111</li>
-<li>*飒飒大</li>
-<li>大杀四方</li>
-<li></li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/TEST/">TEST</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-my-fist-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/hexoblog/2016/08/26/my-fist-blog/" class="article-date">
-      <time datetime="2016-08-26T05:33:14.000Z" itemprop="datePublished">2016-08-26</time>
-</a>
-
- 
-    <a href="/hexoblog/2016/08/26/my-fist-blog/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-            <span class="ds-thread-count"  data-thread-key="2016/08/26/my-fist-blog/" ></span>
-        
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoblog/2016/08/26/my-fist-blog/">我的第一个博客</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p><Excerpt in index | 首页摘要><br>这里是摘要<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/hexoblog/categories/示例/">示例</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Clover/">Clover</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/html/">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/中文/">中文</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/hexoblog/2016/08/26/my-fist-blog/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/hexoblog/2016/08/26/hello-world/" class="article-date">
-      <time datetime="2016-08-26T02:33:07.000Z" itemprop="datePublished">2016-08-26</time>
-</a>
-
- 
-    <a href="/hexoblog/2016/08/26/hello-world/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-            <span class="ds-thread-count"  data-thread-key="2016/08/26/hello-world/" ></span>
-        
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoblog/2016/08/26/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/hexoblog/2016/08/26/hello-world/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2106-08-16-linux-file-encode" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/hexoblog/2016/08/16/2106-08-16-linux-file-encode/" class="article-date">
-      <time datetime="2016-08-16T05:33:14.000Z" itemprop="datePublished">2016-08-16</time>
-</a>
-
- 
-    <a href="/hexoblog/2016/08/16/2106-08-16-linux-file-encode/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-            <span class="ds-thread-count"  data-thread-key="2016/08/16/2106-08-16-linux-file-encode/" ></span>
-        
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoblog/2016/08/16/2106-08-16-linux-file-encode/">Linux文件加密之ccrypt</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="ccrypt"><a href="#ccrypt" class="headerlink" title="ccrypt"></a>ccrypt</h1><p><code>ccrypt是为了取代UNIX crypt而设计的，这个实用工具可用于文件和数据流加密及解密。它使用Rijndael密码</code></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/hexoblog/categories/技术碎片/">技术碎片</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Clover/">Clover</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Linux/">Linux</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/hexoblog/2016/08/16/2106-08-16-linux-file-encode/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2106-08-16-php-codes-encode" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/hexoblog/2016/08/16/2106-08-16-php-codes-encode/" class="article-date">
-      <time datetime="2016-08-16T05:33:14.000Z" itemprop="datePublished">2016-08-16</time>
-</a>
-
- 
-    <a href="/hexoblog/2016/08/16/2106-08-16-php-codes-encode/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-            <span class="ds-thread-count"  data-thread-key="2016/08/16/2106-08-16-php-codes-encode/" ></span>
-        
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoblog/2016/08/16/2106-08-16-php-codes-encode/">PHP源码加密模块 php-beast</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p><a href="https://github.com/liexusong/php-beast">https://github.com/liexusong/php-beast</a></p>
-</blockquote>
-<pre><code>
-  _____  _    _ _____    ____  ______           _____ _______
- |  __ \| |  | |  __ \  |  _ \|  ____|   /\    / ____|__   __|
- | |__) | |__| | |__) | | |_)/| |__     /  \  | (___    | |
- |  ___/|  __  |  ___/  |  _ ||  __|   / /\ \  \___ \   | |
- | |    | |  | | |      | |_)\| |____ / ____ \ ____) |  | |
- |_|    |_|  |_|_|      |____/|______/_/    \_\_____/   |_|
-</code></pre>
-
-<pre>
-此模块可以用于商业用途, 版权归原作者.<br/>
-QQ交流群：239243332
-</pre>
-
-<p><b>php-beast可以自定义加密模块，加密模块编写教程: <a href="https://github.com/liexusong/php-beast/wiki/%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%9D%97%E7%BC%96%E5%86%99%E6%95%99%E7%A8%8B">点击</a></b><br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/hexoblog/categories/技术碎片/">技术碎片</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Clover/">Clover</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/PHP/">PHP</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/hexoblog/2016/08/16/2106-08-16-php-codes-encode/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016-07-04-redis-study-2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/hexoblog/2016/07/04/2016-07-04-redis-study-2/" class="article-date">
-      <time datetime="2016-07-04T05:33:14.000Z" itemprop="datePublished">2016-07-04</time>
-</a>
-
- 
-    <a href="/hexoblog/2016/07/04/2016-07-04-redis-study-2/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-            <span class="ds-thread-count"  data-thread-key="2016/07/04/2016-07-04-redis-study-2/" ></span>
-        
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoblog/2016/07/04/2016-07-04-redis-study-2/">Redis Study 之二 入门指南</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>Redis通常被人们认为是一种持久化的存储器关键字-值型存储（in-memory persistent key-value store）。</p>
-<blockquote>
-<p>参考书籍：Redis入门指南（第二版）李子骅 编著 人民邮电出版社</p>
-</blockquote>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/hexoblog/categories/数据库/">数据库</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Clover/">Clover</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/DB/">DB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Redis/">Redis</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/hexoblog/2016/07/04/2016-07-04-redis-study-2/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016-06-30-gulp-study" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/hexoblog/2016/06/30/2016-06-30-gulp-study/" class="article-date">
-      <time datetime="2016-06-30T04:00:00.000Z" itemprop="datePublished">2016-06-30</time>
-</a>
-
- 
-    <a href="/hexoblog/2016/06/30/2016-06-30-gulp-study/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-            <span class="ds-thread-count"  data-thread-key="2016/06/30/2016-06-30-gulp-study/" ></span>
-        
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoblog/2016/06/30/2016-06-30-gulp-study/">Gulp-前端自动化构建工具</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="Gulp-Web前端自动化开发工具"><a href="#Gulp-Web前端自动化开发工具" class="headerlink" title="Gulp-Web前端自动化开发工具"></a>Gulp-Web前端自动化开发工具</h1><hr>
-<h3 id="入门指南"><a href="#入门指南" class="headerlink" title="入门指南"></a>入门指南</h3><h4 id="1-全局安装-gulp"><a href="#1-全局安装-gulp" class="headerlink" title="1. 全局安装 gulp"></a>1. 全局安装 gulp</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --global gulp</div></pre></td></tr></table></figure>
-<h4 id="2-作为项目的开发依赖（devDependencies）安装"><a href="#2-作为项目的开发依赖（devDependencies）安装" class="headerlink" title="2. 作为项目的开发依赖（devDependencies）安装"></a>2. 作为项目的开发依赖（devDependencies）安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save-dev gulp</div></pre></td></tr></table></figure>
-<h4 id="3-在项目根目录下创建一个名为-gulpfile-js-的文件"><a href="#3-在项目根目录下创建一个名为-gulpfile-js-的文件" class="headerlink" title="3. 在项目根目录下创建一个名为 gulpfile.js 的文件"></a>3. 在项目根目录下创建一个名为 gulpfile.js 的文件</h4><pre><code class="js"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);
-
-gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
-  <span class="comment">// 将你的默认的任务代码放在这</span>
-});
-</code></pre>
-<p>####4. 运行 gulp：</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/hexoblog/categories/开发工具/">开发工具</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Clover/">Clover</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Gulp/">Gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Web/">Web</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016-06-20-redis-study" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/hexoblog/2016/06/20/2016-06-20-redis-study/" class="article-date">
-      <time datetime="2016-06-20T04:00:00.000Z" itemprop="datePublished">2016-06-20</time>
-</a>
-
- 
-    <a href="/hexoblog/2016/06/20/2016-06-20-redis-study/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-            <span class="ds-thread-count"  data-thread-key="2016/06/20/2016-06-20-redis-study/" ></span>
-        
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoblog/2016/06/20/2016-06-20-redis-study/">Redis Study</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="Redis的学习"><a href="#Redis的学习" class="headerlink" title="Redis的学习"></a>Redis的学习</h1><hr>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><hr>
-<p>最近几年来，关于持久化和数据查询的相关技术，其需求已经增长到了让人惊讶的程度。可以断言，关系型数据库再也不是放之四海皆准。换一句话说，围绕数据的解决方案不可能再只有唯一一种。</p>
-<p>对于我来说，在众多新出现的解决方案和工具里，最让人兴奋的，无疑是Redis。为什么？首先是因为其让人不可思议的容易学习，只需要简短的几个小时学习时间，就能对Redis有个大概的认识。还有，Redis在处理一组特定的问题集的同时能保持相当的通用性。更准确地说就是，Redis不会尝试去解决关于数据的所有事情。在你足够了解Redis后，事情就会变得越来越清晰，什么是可行的，什么是不应该由Redis来处理的。作为一名开发人员，如此的经验当是相当的美妙。<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/hexoblog/categories/数据库/">数据库</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Clover/">Clover</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/DB/">DB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Redis/">Redis</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/hexoblog/2016/06/20/2016-06-20-redis-study/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016-05-2-monogo-db-study" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/hexoblog/2016/05/20/2016-05-2-monogo-db-study/" class="article-date">
-      <time datetime="2016-05-20T05:00:00.000Z" itemprop="datePublished">2016-05-20</time>
-</a>
-
- 
-    <a href="/hexoblog/2016/05/20/2016-05-2-monogo-db-study/#comments" title="查看评论">
-        <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <span class="count-comment"></span>
-        
-            <span class="ds-thread-count"  data-thread-key="2016/05/20/2016-05-2-monogo-db-study/" ></span>
-        
-        
-    </a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hexoblog/2016/05/20/2016-05-2-monogo-db-study/">Monogo DB Study</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="MonogoDB-学习笔记"><a href="#MonogoDB-学习笔记" class="headerlink" title="MonogoDB  学习笔记"></a>MonogoDB  学习笔记</h1><hr>
-<p>#入门篇</p>
-<hr>
-<h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><hr>
-<h4 id="Mongo-概念"><a href="#Mongo-概念" class="headerlink" title="Mongo 概念"></a>Mongo 概念</h4><ul>
-<li><code>mongo</code> <code>MongoDB</code> <code>索引</code> <code>集合</code> <code>复制集</code> <code>分片</code> <code>数据均衡</code></li>
-</ul>
-<h4 id="学会MongoDB的搭建"><a href="#学会MongoDB的搭建" class="headerlink" title="学会MongoDB的搭建"></a>学会MongoDB的搭建</h4><ul>
-<li>搭建简单的单击服务</li>
-<li>搭建具有冗余容错功能的复制集</li>
-<li>搭建大规模数据集群</li>
-<li>完成集群的自动部署</li>
-</ul>
-<h4 id="MongoDB的使用"><a href="#MongoDB的使用" class="headerlink" title="MongoDB的使用"></a>MongoDB的使用</h4><ul>
-<li>最基本的文档的读写和更新</li>
-<li>各种不同类型的索引的创建与使用</li>
-<li>复杂的聚合查询</li>
-<li>对数据集合进行分片，在不同分片间维持数据均衡</li>
-<li>数据备份与恢复</li>
-<li>数据迁移</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/hexoblog/categories/数据库/">数据库</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/Clover/">Clover</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoblog/tags/MonogoDB/">MonogoDB</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/hexoblog/2016/05/20/2016-05-2-monogo-db-study/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-</div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
-                2016-2017 Clover Cui
-            </div>
-            <div class="footer-right">
-               <!-- <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>-->
-            </div>
+        <!-- Main-first -->
+                    <div id="main">
+            <!-- Main first s-->
+            <article id="me" class="panel">
+                <header>
+                    <h1>Miccall Metro</h1>
+                    <p>Welcome to my Blog</p>
+                </header>
+                <a href="" class="jumplink pic">
+                    <span class="arrow icon fa-chevron-right"><span></span></span>
+                    <img src="/images/me.jpg" alt="" />
+                </a>
+            </article>
+            <!-- Main first e-->
         </div>
+
         
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+        <!-- 文章列表   s -->
+        <div id="main" style="background-color: transparent; padding:0;">
+        <section class="link_container" style="margin-top: 0; background-color: transparent; ">
+            <div class="link_row">
+                <!-- 文章sample  s-->
+
+                 
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                        <div class="page_title" style="background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <a href="/hexoblog/2016/11/29/test/"><h2 class="page_title_text"> test </h2></a>
+                            <!--段落-->
+                        </div>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2016-11-29</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/"></a>                              
+                            </h6>
+
                         </span>
-                    </span>
-                
-                
-                    <span>| </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+             
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                        <div class="page_title" style="background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <a href="/hexoblog/2016/08/26/my-fist-blog/"><h2 class="page_title_text"> 我的第一个博客 </h2></a>
+                            <!--段落-->
+                        </div>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2016-08-26</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/"><a class="post_category-link" href="/hexoblog/categories/示例/">示例</a></a>                              
+                            </h6>
+
                         </span>
-                    </span>
-                
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+             
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                        <div class="page_title" style="background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <a href="/hexoblog/2016/08/26/hello-world/"><h2 class="page_title_text"> Hello World </h2></a>
+                            <!--段落-->
+                        </div>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2016-08-26</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/"></a>                              
+                            </h6>
+
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+             
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                        <div class="page_title" style="background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <a href="/hexoblog/2016/08/16/2106-08-16-linux-file-encode/"><h2 class="page_title_text"> Linux文件加密之ccrypt </h2></a>
+                            <!--段落-->
+                        </div>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2016-08-16</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/"><a class="post_category-link" href="/hexoblog/categories/技术碎片/">技术碎片</a></a>                              
+                            </h6>
+
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+             
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                        <div class="page_title" style="background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <a href="/hexoblog/2016/08/16/2106-08-16-php-codes-encode/"><h2 class="page_title_text"> PHP源码加密模块 php-beast </h2></a>
+                            <!--段落-->
+                        </div>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2016-08-16</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/"><a class="post_category-link" href="/hexoblog/categories/技术碎片/">技术碎片</a></a>                              
+                            </h6>
+
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+             
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                        <div class="page_title" style="background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <a href="/hexoblog/2016/07/04/2016-07-04-redis-study-2/"><h2 class="page_title_text"> Redis Study 之二 入门指南 </h2></a>
+                            <!--段落-->
+                        </div>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2016-07-04</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/"><a class="post_category-link" href="/hexoblog/categories/数据库/">数据库</a></a>                              
+                            </h6>
+
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+             
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                        <div class="page_title" style="background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <a href="/hexoblog/2016/06/30/2016-06-30-gulp-study/"><h2 class="page_title_text"> Gulp-前端自动化构建工具 </h2></a>
+                            <!--段落-->
+                        </div>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2016-06-30</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/"><a class="post_category-link" href="/hexoblog/categories/开发工具/">开发工具</a></a>                              
+                            </h6>
+
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+             
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                        <div class="page_title" style="background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <a href="/hexoblog/2016/06/20/2016-06-20-redis-study/"><h2 class="page_title_text"> Redis Study </h2></a>
+                            <!--段落-->
+                        </div>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2016-06-20</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/"><a class="post_category-link" href="/hexoblog/categories/数据库/">数据库</a></a>                              
+                            </h6>
+
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+             
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                        <div class="page_title" style="background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <a href="/hexoblog/2016/05/20/2016-05-2-monogo-db-study/"><h2 class="page_title_text"> Monogo DB Study </h2></a>
+                            <!--段落-->
+                        </div>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2016-05-20</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/"><a class="post_category-link" href="/hexoblog/categories/数据库/">数据库</a></a>                              
+                            </h6>
+
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
+            
             </div>
-        
-    </div>
+        </section>
+        </div>
+        <!-- 文章列表   end -->
+        <!-- Main 主要部分 end -->
+        <!-- footer  页码 start-->
+        <footer style="text-align: center; padding-top: 2em;">
+  
 </footer>
+
+        <!-- footer  页码 end-->
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+        <!-- Copyright 版权 end -->
     </div>
-    
-<script data-main="/hexoblog/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/hexoblog//background/bg-x.jpg)".replace(/bg-x/gi, 'bg-'+Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-                //$("body").css({"background": "url(/hexoblog//background/bg-5.jpg)", "background-attachment": "fixed", "background-size": "cover"});
-                
-            }
-        })
-    </script>
-
-
-    
-        <script>
-            if ($(".left-col").is(":visible")) {
-                var duoshuoQuery = {short_name:"clovercui"};
-                (function() {
-                    var d = document, s = d.createElement('script');
-                    s.src = 'http://static.duoshuo.com/embed.js';
-                    s.async = true; s.charset = 'UTF-8';
-                    (d.head || d.body).appendChild(s);
-                })();
-
-                $(document).ready(function(){
-                    var $duoshuoCount = $(".ds-thread-count");
-                    $duoshuoCount.bind("DOMNodeInserted", function(e) {
-                        var num = $(this).text().replace(/[^0-9]/ig,"");
-                        $(this).siblings(".count-comment").text(num);
-                        $(this).remove();
-                    })
-                })
-            }
-        </script>
-    
-
-     
-
-
-
-
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
-</div>
-<script>
-    // Open in New Window
-    
-        var oOpenInNew = {
-            
-            
-            
-            
-            
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-            
-             friends: "#js-friends a", 
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
-    
-</script>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-  </div>
+    <!-- Wrapper 外包 e-->
+    <!-- Scripts -->
 </body>
+ 	
 </html>
